@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* General Bubble Styling */
+.chat-bubble {
+    margin: 20px;
+    display: inline-block;
+    position: relative;
+    width: fit-content;
+    max-width: 300px; /* Optional for responsive text wrapping */
+    background-color: lightgreen;
+    border-radius: 12px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for text */
+    color: #000; /* Text color */
+    font-family: Arial, sans-serif;
+    font-size: 14px; /* Adjust for readability */
+  }
+  
+  /* Pointer Styling for Left-Top */
+  .chat-bubble.left-top::before {
+    content: '';
+    position: absolute;
+    top: 0; /* Align with top */
+    left: -10px; /* Shift pointer to the left */
+    width: 0;
+    height: 0;
+    border-width: 10px;
+    border-style: solid;
+    border-color: lightgreen transparent transparent transparent;
+  }
+  
+  .chat-bubble.left-top::after {
+    content: '';
+    position: absolute;
+    top: 1px; /* Slightly below ::before to create border effect */
+    left: -12px;
+    width: 0;
+    height: 0;
+    border-width: 12px;
+    border-style: solid;
+    border-color: transparent transparent transparent transparent; /* Shadow effect */
+  }
+  
+
+  .chat-bubble.right-top::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: lightgreen transparent transparent transparent;
+  }
+  
+  .chat-bubble.right-top::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    right: -12px;
+    border-width: 9px;
+    border-style: solid;
+    border-color: transparent transparent transparent transparent; /* Background color for the arrow */
+  }
+  
+
+  /* Text Styling */
+  .chat-text p {
+    margin: 0; /* Remove default margins */
+    word-wrap: break-word; /* Wrap long words */
+  }
+  
