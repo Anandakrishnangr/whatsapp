@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {},
+	"extensions": {
+		"recommendations": ["eamodio.gitlens","rangav.vscode-thunder-client"]
+	}
+}
