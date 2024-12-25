@@ -1,14 +1,16 @@
-import NavbarPublic from '../components/navbarPublic'
-import ContainerCapsule from '../components/container'
+import NavbarPublic from '../components/navbar/navbarPublic'
 import Qr from '../assets/qr.png'; // Adjust the path based on your project structure
 import useAuthStore from '../store/authStore';
+import  { ContainerCapsule,Modal } from '../components';
+import { useState } from 'react';
 
 const PublicLayout = () => {
   const { login } = useAuthStore()
-
+const [loginModal, setloginModal] = useState<true|false>(false)
   return (
     <div className='bg-whatsapp-background select-none h-screen '>
       <NavbarPublic />
+      <Modal isOpen={loginModal} onClose={()=>setloginModal(false)} children={<></>} />
       <ContainerCapsule>
         <div className="flex flex-col md:flex-row-reverse">
           <div className="w-full md:w-4/12 p-4 flex justify-center items-center">
@@ -27,14 +29,14 @@ const PublicLayout = () => {
                 <li>Tap Menu ... on Android, or Settigns O on Iphone </li>
                 <li>Tap Linked devices and then Link a device</li>
                 <li>Point your phone at this screen to scan the QR code</li>
-              </ol>
+              </ol>Qr
             </div>
             <a className='underline block'>Need help getting started?</a>
             <a className='underline block'>Log in with phone number</a>
           </div>
         </div>
-
       </ContainerCapsule>
+<button onClick={()=>setloginModal(true)}>signup</button>
 <p className='text-center'>Your personal messages are end-to-end encrypted</p>
     </div>
   )

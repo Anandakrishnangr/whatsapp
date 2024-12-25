@@ -1,0 +1,25 @@
+query QueryUserDetails($request: QueryUserRequest!) {
+  queryUserDetails(request: $request) {
+    success
+    errors {
+      code
+      message
+    }
+    user {
+      id
+      name
+      role
+      org
+    }
+  }
+}
+
+mutation Login($request: LoginRequest!) {
+  login(request: $request) {
+    success
+    errors {
+      code
+      message
+    }
+  }
+}
