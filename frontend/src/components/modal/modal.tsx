@@ -7,13 +7,20 @@ interface ModalProps {
     children: React.ReactNode;
     headerRequired?: boolean;
     footerRequired?: boolean;
+    closeOnBackdropClick?: boolean;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title = '', children, headerRequired = true, footerRequired = true }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title = '', children, headerRequired = true, footerRequired = true, closeOnBackdropClick = false }) => {
+    const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (closeOnBackdropClick && e.target === e.currentTarget) {
+            onClose();
+        }
+    };
     return (
         <div
             className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
                 } bg-black bg-opacity-50`}
+                onClick={handleBackdropClick}
         >
             <div
                 className={`bg-white rounded-lg shadow-lg transform transition-transform duration-300 ${isOpen ? 'scale-100' : 'scale-95'

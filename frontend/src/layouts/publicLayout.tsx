@@ -3,6 +3,7 @@ import Qr from '../assets/qr.png'; // Adjust the path based on your project stru
 import useAuthStore from '../store/authStore';
 import  { ContainerCapsule,Modal } from '../components';
 import { useState } from 'react';
+import { Login } from '../features';
 
 const PublicLayout = () => {
   const { login } = useAuthStore()
@@ -10,7 +11,7 @@ const [loginModal, setloginModal] = useState<true|false>(false)
   return (
     <div className='bg-whatsapp-background select-none h-screen '>
       <NavbarPublic />
-      <Modal isOpen={loginModal} onClose={()=>setloginModal(false)} children={<></>} />
+      <Modal isOpen={loginModal} onClose={()=>setloginModal(false)} children={<Login />} footerRequired={false}  />
       <ContainerCapsule>
         <div className="flex flex-col md:flex-row-reverse">
           <div className="w-full md:w-4/12 p-4 flex justify-center items-center">

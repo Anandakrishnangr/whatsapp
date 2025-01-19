@@ -19,7 +19,8 @@ const resolvers = {
       let { request, response } = context
       request.body = args['request']
       return await getUser(request, response)
-    }
+    },
+   
   }
 }
 

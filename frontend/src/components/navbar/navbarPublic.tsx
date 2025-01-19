@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../../assets/logo.png'; // Adjust the path based on your project structure
-import {CapsuleButton} from '../form/button';
+import {CapsuleButton} from '../form';
 
 const NavbarPublic: React.FC = () => {
   return (

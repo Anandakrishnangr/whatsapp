@@ -1,6 +1,7 @@
-import Login from "../src/models/auth.models.js"
+import { NextFunction, Request, Response } from "express"
+import Login from "../models/auth.models"
 
-export const register = async (req, res, next) => {
+export const register = async (req:Request, res:Response, next:NextFunction) => {
     try {
         let { password, email } = req.body
         await Login.create({ password, email })
@@ -10,7 +11,7 @@ export const register = async (req, res, next) => {
     }
 }
 
-export const login = async (req, res, next) => {
+export const login = async (req:Request, res:Response, next:NextFunction) => {
     try {
         let { password, email } = req.body
         await Login.isUserAuthenticated(email, password)

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { VerificationDetailsSchema } from "./common.schema.js";
-import { comparePassword, hashPassword } from "../library/auth.lib.ts";
-import AppError from "../library/error.lib.ts";
+import { VerificationDetailsSchema } from "./common.schema";
+import { comparePassword, hashPassword } from "../library/auth.lib";
+import AppError from "../library/error.lib";
 
 const LoginSchema =new mongoose.Schema({
     email: {
@@ -36,7 +36,7 @@ LoginSchema.pre('save', async function (next) {
 });
 
 LoginSchema.post(['find', 'findOne'], async function (docs) {
-    const _includePassword = this.options.includePassword
+    const _includePassword =true// this?.options?.includePassword
     if (_includePassword) {
         return docs
     }

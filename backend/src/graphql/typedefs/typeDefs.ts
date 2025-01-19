@@ -9,7 +9,6 @@ input LoginRequest{
   otp: Int
 }
 
-
 type Response {
   success: Boolean
   errors: ErrorInfo

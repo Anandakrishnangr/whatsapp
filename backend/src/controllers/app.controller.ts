@@ -1,10 +1,15 @@
 import { Request, Response } from 'express'
-export async function addUser(request, response) {
+import Login from '../models/auth.models'
+export async function addUser(request:Request, response:Response) {
   try {
-    await request.redisClient.set(request.body.id, JSON.stringify(request.body))
-    response.send({
-      status: true,
-    })
+    try {
+      let { password, email } = request.body
+     let user =  await Login.create({ password, email })
+     return user
+  } catch (error) {
+
+  }
+   
   } catch (error) {
     response.send({
       status: false,
