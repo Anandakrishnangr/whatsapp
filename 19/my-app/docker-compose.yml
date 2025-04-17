@@ -1,0 +1,18 @@
+services:
+  react-app:
+    build: .
+    ports:
+      - "5173:5173"     # Vite dev server
+      - "24678:24678"   # Vite HMR WebSocket
+    volumes:
+      - .:/app
+      - /app/node_modules  # Prevent node_modules overwrite
+    working_dir: /app
+    command: npm run dev
+    environment:
+      - HOST=0.0.0.0
+    develop:
+      watch:
+        - path: .
+          target: /app
+          action: sync
