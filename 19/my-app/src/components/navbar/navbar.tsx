@@ -1,6 +1,7 @@
 import Constants from '@/constant/index'
 import useAuthStore from '@/store/authStore'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export const NavBar = () => {
     const { logout } = useAuthStore()
@@ -9,7 +10,7 @@ export const NavBar = () => {
     return  <header className='w-24 py-3 h-full border border-opacity-15 border-slate-300 flex flex-col items-center justify-between bg-private-primary'>
     <div>
         {NavList.map((item, index) => (
-            <div className='w-12 h-12 flex justify-center'>
+            <Link to={item.to} className='w-12 h-12 flex justify-center'>
                 <div
                     key={index}
                     onClick={() => setActiveIndex(index)}
@@ -23,7 +24,7 @@ export const NavBar = () => {
                         {item.text}
                     </span>
                 </div>
-            </div>
+            </Link>
 
         ))}
     </div>
@@ -31,7 +32,7 @@ export const NavBar = () => {
     <div>
         <button onClick={() => logout()} >Lt</button>
         {bottom.map((item, index) => (
-            <div className='w-12 h-12 flex justify-center'>
+            <Link to={item.to} className='w-12 h-12 flex justify-center'>
                 <div
                     key={index}
                     onClick={() => setActiveIndex(index)}
@@ -45,7 +46,7 @@ export const NavBar = () => {
                         {item.text}
                     </span>
                 </div>
-            </div>
+            </Link>
         ))}
     </div>
 </header>

@@ -18,7 +18,10 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': '/src',
-      'components': '/src/components'
+      'components': '/src/components',
+      'types': '/src/types',
+      "constants":'/src/constant'
+
     },
   },
   server: {

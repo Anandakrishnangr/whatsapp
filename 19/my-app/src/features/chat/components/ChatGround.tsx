@@ -1,7 +1,11 @@
 import { Mic, PlusIcon, Search, SendIcon, Smile, ThreeDotVertical } from "@/assets";
+import constant from "constants";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 export const ChatGround = () => {
+    const { chatList } = constant
+    const { id } = useParams();
     const [count, setCount] = useState<string>('');
     const [Chats, setChats] = useState<string[]>([]);
     const handleClick = () => {
@@ -9,18 +13,18 @@ export const ChatGround = () => {
         setCount('');
     };
     return <>
-        <div className='h-16 bg-private-secondary flex text-white'>
+        <div className='h-16 bg-private-primary flex text-white'>
 
             <div className='flex items-center p-3'>
                 <div className="w-12  h-12 flex justify-center rounded-full p-0 overflow-hidden bg-gray-200 ">
                     <img
                         className="object-cover"
-                        src='https://images.pexels.com/photos/3348748/pexels-photo-3348748.jpeg' />
+                        src={chatList[Number(id || 0)]["image-url"]} />
                 </div>
             </div>
 
-            <div className='flex flex-col flex-1 justify-center'>
-                <p className='text-left font-bold text-white'>React Community</p>
+            <div className='flex flex-col flex-1 justify-center'> 
+                <p className='text-left font-bold text-white'>{chatList[Number(id || 0)].name} React Community</p>
                 <p className='m-0 text-icons-muted text-xs'>
                     Anees, Aswin, 8327373772,
                 </p>

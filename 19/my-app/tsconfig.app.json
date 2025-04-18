@@ -33,6 +33,9 @@
       ],
       "types":[
         "./src/types/index.ts"
+      ],
+      "constants":[
+        "./src/constant/index.tsx"
       ]
     }
   },
