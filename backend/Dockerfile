@@ -1,15 +1,22 @@
-# Build Stage
-FROM node:18 AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build
+# Stage 1: Build TypeScript
+FROM node:18-alpine AS builder
 
-# Production Stage
-FROM node:22-slim	
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm install
+
+COPY tsconfig.json ./
+COPY src ./src
+RUN npx tsc
+
+# Stage 2: Run built JS
+FROM node:18-alpine
+
+WORKDIR /app
 COPY --from=builder /app/dist ./dist
+COPY package*.json ./
+RUN npm install --only=production
+
+ENV NODE_ENV=production
+
 CMD ["node", "dist/index.js"]

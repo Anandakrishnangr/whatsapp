@@ -12,6 +12,8 @@ import resolvers from './graphql/'
 import typeDefs from './graphql/typedefs/typeDefs'
 import * as http from 'http'
 import { NextFunction, Request, Response } from "express"
+import { connectMongoose } from './config/mongoConfig'
+import { PORT } from './config'
 const app = express.default()
 
 export default async function startServer() {
@@ -47,8 +49,12 @@ export default async function startServer() {
 
   app.use('/api/', AppRouter)
 
-  httpServer.listen(process.env.PORT || 3000, () => {
+  httpServer.listen(PORT || 3000, () => {
     console.log(`server started on ${process.env.PORT}!`)
   })
 }
 
+
+
+connectMongoose()
+startServer()
