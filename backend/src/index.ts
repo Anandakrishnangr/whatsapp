@@ -1,6 +1,6 @@
 import * as express from 'express'
 import * as swaggerUi from 'swagger-ui-express'
-import * as swaggerDocument from '../swagger.json'
+import * as swaggerDocument from './swagger.json'
 import * as Redis from './utils/redis'
 import AppRouter from './routes/app.route'
 import * as cors from 'cors'

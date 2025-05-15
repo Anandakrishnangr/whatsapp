@@ -1,21 +1,15 @@
-# Use official Node image
-FROM node:18
-
-# Create app directory
+# Build Stage
+FROM node:18 AS builder
 WORKDIR /app
-
-# Copy package.json and install dependencies
 COPY package*.json ./
-RUN npm install
-
-# Copy source files
+RUN npm ci
 COPY . .
-
-# Build TypeScript code
 RUN npm run build
 
-# Expose the port your app runs on
-EXPOSE 3000
-
-# Start the app
+# Production Stage
+FROM node:22-slim	
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY --from=builder /app/dist ./dist
 CMD ["node", "dist/index.js"]
