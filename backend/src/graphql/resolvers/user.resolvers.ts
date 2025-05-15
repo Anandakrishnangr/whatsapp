@@ -1,5 +1,15 @@
 import { getUser } from '../../controllers/app.controller'
-async function queryUserDetails(obj, args, context) {
+
+interface Context {
+  request: any;
+  response: any;
+}
+
+interface Args {
+  request: any;
+}
+
+async function queryUserDetails(obj: any, args: Args, context: Context) {
   let { request, response } = context
   request.body = args['request']
   return await getUser(request, response)
@@ -10,12 +20,12 @@ const resolvers = {
     queryUserDetails: queryUserDetails,
   },
   Mutation:{
-    login: async (obj, args, context) => {
+    login: async (obj: any, args: Args, context: Context) => {
       let { request, response } = context
       request.body = args['request']
       return await getUser(request, response)
     },
-    requestOtp: async (obj, args, context) => {
+    requestOtp: async (obj: any, args: Args, context: Context) => {
       let { request, response } = context
       request.body = args['request']
       return await getUser(request, response)

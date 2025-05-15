@@ -59,5 +59,9 @@ LoginSchema.statics.isUserAuthenticated = async function (email, password) {
     return isMatch
 }
 
-const Login = mongoose.model("Loginsf", LoginSchema);
+interface LoginModel extends mongoose.Model<any> {
+    isUserAuthenticated(email: string, password: string): Promise<boolean>;
+}
+
+const Login = mongoose.model<any, LoginModel>("Loginsf", LoginSchema);
 export default Login;

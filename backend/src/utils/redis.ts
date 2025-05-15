@@ -1,4 +1,5 @@
 import { createClient } from 'redis'
+import { NextFunction, Request, Response } from "express"
 
 export async function connectRedis() {
   const client = createClient()
@@ -8,10 +9,10 @@ export async function connectRedis() {
 }
 
 
-export function attachRedisClient(req, res, next) {
+export function attachRedisClient (req:Request, res:Response, next:NextFunction) {
   connectRedis()
     .then((client) => {
-      req.redisClient = client;
+      // req.redisClient = client;
       next();
     })
     .catch((err) => {

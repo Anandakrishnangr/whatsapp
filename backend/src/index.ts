@@ -11,8 +11,9 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import resolvers from './graphql/'
 import typeDefs from './graphql/typedefs/typeDefs'
 import * as http from 'http'
-const app = express()
- 
+import { NextFunction, Request, Response } from "express"
+const app = express.default()
+
 export default async function startServer() {
   const httpServer = http.createServer(app)
   const server = new ApolloServer({
@@ -28,8 +29,8 @@ export default async function startServer() {
   // Graphql Entry point
   app.use(
     '/graphql',
-    cors(),
-    express.json(),
+    cors.default(),  
+      express.json(),
     expressMiddleware(server, {
       context: async ({ req, res }) => ({
         // Add optional configuration options
@@ -39,7 +40,7 @@ export default async function startServer() {
     })
   )
 
-  app.get('/health', (req, res) => {
+  app.get('/health', (req: Request, res: Response, next: NextFunction) => {
     res.send('OK')
   })
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
